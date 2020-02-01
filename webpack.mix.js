@@ -12,7 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix
-    .copy('node_modules/@fortawesome/fontawesome-free/webfonts','public/webfonts')
+    .copy('node_modules/@fortawesome/fontawesome-free/webfonts','public/assets/webfonts')
+    .copy('node_modules/jquery/dist/jquery.js','public/assets/js')
     .scripts([
         'node_modules/jquery/dist/jquery.js',
         'node_modules/popper.js/dist/popper.js',

@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
@@ -55,6 +56,12 @@ class RegisterController extends Controller
                         $worker->password = $password;
                         $worker->save();
 
+                        $dataEmail = [
+                            'id' => $user->id,
+                            'name' => $user->name,
+                        ];
+                        Mail::to($email)->send(new RegisterEmail($dataEmail));
+
                         $result['status'] = 'success';
                     } else {
                         $result['status'] = 'failed';
@@ -68,13 +75,12 @@ class RegisterController extends Controller
                 $result['status'] = 'failed';
                 $result['message'] = 'email tidak valid';
             }
-            
-            Mail::to($email)->send(new RegisterEmail());
+
             DB::commit();
             return $result;
         } catch (\Exception $ex) {
             DB::rollBack();
-            dd($ex);
+            return dd($ex);
         }
     }
 
@@ -84,7 +90,26 @@ class RegisterController extends Controller
 
             return 'email terkirim';
         } catch (\Exception $ex) {
-            dd($ex);
+            return dd($ex);
+        }
+    }
+
+    public function verifyIndex($id) {
+        return view('verification')->with([
+            'id' => $id
+        ]);
+    }
+
+    public function verify(Request $request) {
+        $id = $request->id;
+        try {
+            $user = DB::table('users')
+                ->where('id','=',$id)
+                ->update([
+                    'email_verified_at' => date('Y-m-d H:i:s')
+                ]);
+        } catch (\Exception $ex) {
+            return response()->json([$ex]);
         }
     }
 }

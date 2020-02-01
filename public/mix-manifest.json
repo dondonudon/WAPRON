@@ -1,5 +1,6 @@
 {
     "/assets/css/require.css": "/assets/css/require.css",
+    "/assets/js/jquery.js": "/assets/js/jquery.js",
     "/assets/js/require.js": "/assets/js/require.js",
     "/assets/js/layout.js": "/assets/js/layout.js",
     "/assets/css/layout.css": "/assets/css/layout.css"

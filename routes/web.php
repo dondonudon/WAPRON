@@ -20,4 +20,7 @@ Route::get('trial/{data}',function ($data) {
     return \App\Http\Controllers\GenerateRandomController::code($data);
 });
 
+Route::get('verify/{id}','RegisterController@verifyIndex');
+Route::post('verify','RegisterController@verify');
+
 
