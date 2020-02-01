@@ -17,9 +17,10 @@ class CreateStoreProductsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('store_id');
             $table->integer('unit_bisnis_id');
-            $table->integer('stock');
-            $table->decimal('purchase_price');
-            $table->decimal('selling_price');
+            $table->string('name',25);
+            $table->integer('stock')->default(0);
+            $table->decimal('purchase_price')->default(0);
+            $table->decimal('selling_price')->default(0);
             $table->timestamps();
         });
     }

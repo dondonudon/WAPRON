@@ -16,6 +16,7 @@ class CreateStoreWorkersTable extends Migration
         Schema::create('store_workers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('store_id');
+            $table->integer('role_id');
             $table->string('username',25);
             $table->string('name',150);
             $table->string('password',255);

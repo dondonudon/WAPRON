@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SysMenuSeeder::class);
         $this->call(SysRoleSeeder::class);
         $this->call(SysRoleMenuSeeder::class);
+        $this->call(StoreSeeder::class);
     }
 }

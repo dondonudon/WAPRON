@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 Route::get('trial/{data}',function ($data) {
-    return \App\Http\Controllers\AndroidRoleController::getMenu($data);
+    return \App\Http\Controllers\GenerateRandomController::code($data);
 });
 
 

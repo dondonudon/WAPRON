@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\store;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -75,6 +76,7 @@ class LoginController extends Controller
 
         if ($result['status'] == 'success') {
             $result['nav_drawer'] = AndroidRoleController::getMenu($result['user']->role_id);
+            $result['store'] = DB::table('stores')->where('owner','=',$result['user']->id)->get();
         }
 
         return $result;
